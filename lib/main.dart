@@ -39,6 +39,16 @@ Widget _buildBody() {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 _cityDetail(),
+                Divider(
+                  height: 30,
+                ),
+                _temperatureDetail(),
+                Divider(),
+                _extraDetail(),
+                Divider(
+                  height: 30,
+                ),
+                _forecastWether(),
               ],
             ),
           ),
@@ -93,5 +103,167 @@ Column _cityDetail() {
         ),
       )
     ],
+  );
+}
+
+Row _temperatureDetail() {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Icon(
+          Icons.sunny,
+          color: Colors.white,
+          size: 80,
+        ),
+      ),
+      Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Text(
+              "14°F ",
+              style: TextStyle(fontSize: 50, color: Colors.white),
+            ),
+            Text(
+              "LIGHT SNOW",
+              style: TextStyle(fontSize: 12, color: Colors.white),
+            )
+          ],
+        ),
+      )
+    ],
+  );
+}
+
+Padding _extraDetail() {
+  return Padding(
+    padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 60),
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          children: [
+            Icon(
+              Icons.ac_unit,
+              color: Colors.white,
+              size: 35,
+            ),
+            Text(
+              "5",
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
+            Text(
+              "km/hr",
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Icon(
+              Icons.ac_unit,
+              color: Colors.white,
+              size: 35,
+            ),
+            Text(
+              "3",
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
+            Text(
+              "%",
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+        Column(
+          children: [
+            Icon(
+              Icons.ac_unit,
+              color: Colors.white,
+              size: 35,
+            ),
+            Text(
+              "20",
+              style: TextStyle(fontSize: 25, color: Colors.white),
+            ),
+            Text(
+              "%",
+              style: TextStyle(
+                fontSize: 17,
+                color: Colors.white,
+              ),
+            )
+          ],
+        ),
+      ],
+    ),
+  );
+}
+
+Widget _forecastWether() {
+  List<String> days = [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Fryday",
+    "Saturday",
+    "Sunday"
+  ];
+  List<String> degree = ["6", "22", "15", "17", "27", "10", "9"];
+  return SizedBox(
+    width: 400,
+    height: 150,
+    child: ListView.builder(
+        padding: const EdgeInsets.all(8.0),
+        scrollDirection: Axis.horizontal,
+        itemExtent: 180,
+        itemCount: days.length,
+        itemBuilder: (context, index) {
+          return Card(
+              child: ListTile(
+                tileColor: Colors.red.shade200,
+                title: SizedBox(
+                width: 110,
+                  height: 60,
+                  child: Row(
+
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        days[index],
+                        style:  TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                subtitle: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "${degree[index]}°F ",
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                     Icon(
+                      Icons.sunny,
+                      size: 40,
+                      color: Colors.white,
+                    ),
+                  ],
+                ),
+              ),
+            );
+        }),
   );
 }
